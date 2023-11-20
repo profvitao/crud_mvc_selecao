@@ -24,7 +24,6 @@ pool.getConnection((err, conn) => {
   if (err) console.log(err);
   conn = conn.connect();
   console.log("Conexão com sucesso!");
-  s;
 });
 
 /**

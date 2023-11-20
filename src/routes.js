@@ -3,6 +3,9 @@ import SelecaoController from "./app/controllers/SelecaoController.js";
 
 const routes = Router();
 // ROTAS
+routes.get("/", (req, res) => {
+  res.send("Olá mundo");
+});
 routes.get("/selecoes", SelecaoController.index);
 routes.get("/selecoes/:id", SelecaoController.show);
 routes.post("/selecoes", SelecaoController.store);
