@@ -1,6 +1,6 @@
 import mysql from "mysql";
 
-const pool = mysql.createPool({
+const conn = mysql.createConnection({
   host: process.env.DB_HOST || "db4free.net",
   port: process.env.DB_PORT || "3306",
   user: process.env.DB_USER || "bdcopa10",
@@ -19,12 +19,12 @@ const pool = mysql.createPool({
 //   // password: "admin",
 //   database: DB_NAME,
 // });
-let conn;
-pool.getConnection((err, conn) => {
-  if (err) console.log(err);
-  conn = conn.connect();
-  console.log("Conexão com sucesso!");
-});
+// let conn;
+// pool.getConnection((err, conn) => {
+//   if (err) console.log(err);
+//   conn = conn.connect();
+//   console.log("Conexão com sucesso!");
+// });
 
 /**
  * Executa uma instrução sql com ou sem valores
@@ -45,7 +45,7 @@ export const consult = (sql, valores = "", mensagemReject) => {
     });
   })
     .then((rows) => {
-      console.log(rows);
+      return rows;
     })
     .catch((error) => console.log(error))
     .finally("teste");

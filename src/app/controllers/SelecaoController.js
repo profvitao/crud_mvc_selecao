@@ -2,7 +2,7 @@ import SelecaoRepository from "../repositories/SelecaoRepository.js";
 class SelecaoController {
   async index(req, res) {
     const rows = await SelecaoRepository.findAll();
-    res.json(rows);
+    return res.json(rows);
   }
 
   async show(req, res) {
