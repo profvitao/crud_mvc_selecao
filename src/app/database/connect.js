@@ -1,12 +1,12 @@
-import mysql from "mysql2";
+import mysql from "mysql";
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST || "db4free.net",
+  port: process.env.DB_PORT || "3306",
+  user: process.env.DB_USER || "bdcopa10",
+  password: process.env.DB_PASSWORD || "admin1234",
   // password: "admin",
-  database: process.env.DB_NAME,
+  database: process.env.DB_NAME || "bdcopa",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -19,13 +19,13 @@ const pool = mysql.createPool({
 //   // password: "admin",
 //   database: DB_NAME,
 // });
-
+let conn;
 pool.getConnection((err, conn) => {
   if (err) console.log(err);
-  conn.connect();
+  conn = conn.connect();
   console.log("Conexão com sucesso!");
+  s;
 });
-module.exports = pool.promise();
 
 /**
  * Executa uma instrução sql com ou sem valores
