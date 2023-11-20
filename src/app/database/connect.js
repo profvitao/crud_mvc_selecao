@@ -45,6 +45,7 @@ export const consult = (sql, valores = "", mensagemReject) => {
     });
   })
     .then((rows) => {
+      console.log(rows);
       return rows;
     })
     .catch((error) => console.log(error))
