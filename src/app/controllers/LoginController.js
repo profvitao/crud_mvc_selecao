@@ -2,7 +2,7 @@ import LoginRepository from "../repositories/LoginRepository.js";
 class LoginController {
   async show(req, res) {
     const email = req.body.email;
-    console.log(req.body.email);
+    console.log(req);
     const rows = await LoginRepository.findByEmail(email);
     res.json(rows);
   }
