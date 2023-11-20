@@ -1,12 +1,15 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 
-const conn = mysql.createConnection({
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   // password: "admin",
   database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 // const conn = mysql.createConnection({
 //   host: DB_HOST,
@@ -17,7 +20,12 @@ const conn = mysql.createConnection({
 //   database: DB_NAME,
 // });
 
-conn.connect();
+pool.getConnection((err, conn) => {
+  if (err) console.log(err);
+  conn.connect();
+  console.log("Conexão com sucesso!");
+});
+module.exports = pool.promise();
 
 /**
  * Executa uma instrução sql com ou sem valores
