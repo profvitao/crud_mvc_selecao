@@ -1,4 +1,3 @@
-import connection from "../database/connect.js";
 import SelecaoRepository from "../repositories/SelecaoRepository.js";
 class SelecaoController {
   async index(req, res) {

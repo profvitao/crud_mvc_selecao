@@ -1,12 +1,21 @@
 import mysql from "mysql";
 
 const conn = mysql.createConnection({
-  host: "localhost",
-  port: "3306",
-  user: "root",
-  password: "admin",
-  database: "bdcopa",
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  // password: "admin",
+  database: DB_NAME,
 });
+// const conn = mysql.createConnection({
+//   host: DB_HOST,
+//   port: DB_PORT,
+//   user: DB_USER,
+//   password: DB_PASSWORD,
+//   // password: "admin",
+//   database: DB_NAME,
+// });
 
 conn.connect();
 
@@ -27,6 +36,11 @@ export const consult = (sql, valores = "", mensagemReject) => {
         resolve(rows);
       }
     });
-  });
+  })
+    .then((rows) => {
+      console.log(rows);
+    })
+    .catch((error) => console.log(error))
+    .finally("teste");
 };
 export default conn;
