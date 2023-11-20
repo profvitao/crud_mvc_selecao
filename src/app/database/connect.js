@@ -21,7 +21,6 @@ const pool = mysql.createPool({
 // });
 let conn;
 pool.getConnection((err, conn) => {
-  console.log(process.env);
   if (err) console.log(err);
   conn = conn.connect();
   console.log("Conexão com sucesso!");
