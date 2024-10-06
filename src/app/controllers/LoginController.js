@@ -1,15 +1,32 @@
 import LoginRepository from "../repositories/LoginRepository.js";
 class LoginController {
+  async findAll(req, res) {
+    res.json(await LoginRepository.findAll());
+  }
+  async findByCpf(req, res) {
+    res.json(await LoginRepository.findByCpf(req.params.cpf));
+  }
   async show(req, res) {
     const email = req.body.email;
-    console.log(req);
     const rows = await LoginRepository.findByEmail(email);
-    res.json(rows);
+    if (req.body.senha == rows[0].senha) {
+      res.send(rows[0]);
+    } else {
+      res.send(false);
+    }
   }
   async store(req, res) {
     const selecao = req.body;
     const rows = await LoginRepository.create(selecao);
-    res.json(rows);
+    var sucesso = {
+      msgCadastro: "Cadastro realizado com sucesso!",
+      statusCadastro: "success",
+    };
+    var falha = {
+      msgCadastro: "Cadastro não realizado!",
+      statusCadastro: "error",
+    };
+    res.json(rows === undefined ? falha : sucesso);
   }
   async update(req, res) {
     const selecao = req.body;
